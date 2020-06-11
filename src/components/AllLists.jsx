@@ -8,11 +8,11 @@ const Container = styled.div`
     margin:0 auto;
     margin-bottom:75px;
 `
+
 const Title = styled.h1`
     font-size: 39px;
     font-weight: 900;
     font-family: "Red Hat Display";
-
 `
 
 const Wrapper = styled.ul`
@@ -21,10 +21,8 @@ const Wrapper = styled.ul`
     padding-left:0;
     display:flex;
     flex-direction:column;
-    
 `
-const Item = styled.li`List Name Goes here
-
+const Item = styled.li`
     border-radius: 5px;
     padding: 10px;
     background: #FFFFFF;
@@ -36,7 +34,7 @@ const Item = styled.li`List Name Goes here
     }
 `
 
-const Name = styled(Link)`
+const Name = styled.button`
     font-size: 20px;
     font-weight: 700;
     font-family: "Red Hat Display";
@@ -52,7 +50,7 @@ const Edit = styled(Link)`
     text-decoration:none;
 `
 
-export default function AllLists() {
+export default function AllLists({pickRandom}) {
     let [lists, setLists] = useState([])
 
     useEffect(()=>{
@@ -64,8 +62,14 @@ export default function AllLists() {
         <Container>
             <Title>Lists</Title>
             <Wrapper>
-                {lists.map(el=>{return(<Item>
-                    <Name>{el.title}</Name>
+                {lists.map((el, index)=>{return(<Item key={el.title + index}>
+                    <Name
+                        onClick={()=>{
+                            console.log(el.title)
+                            pickRandom(el.title)
+                        }}
+                        type="button"
+                    >{el.title}</Name>
                     <Edit></Edit>
                 </Item>)})}
             </Wrapper>

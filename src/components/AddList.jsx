@@ -64,14 +64,45 @@ font-size: 22px;
 align-self:flex-end;
 width: 25%;
 color: #FFFFFF;
+`
 
+const ShowButtonWrapper = styled.div`
+display: flex;
+flex-direction:row;
+justify-content:flex-end;
+max-width:700px;
+margin: auto;
+`
 
+const ShowButton = styled.button`
+background: #04A449;
+border-radius: 5px;
+padding: 10px 45px;
+border:none;
+font-family: Alegreya Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 22px;
+cursor:pointer;
+align-self:flex-end;
+width: 25%;
+color: #FFFFFF;
+`
+
+const HideButton= styled.button`
+background:none;
+padding:10px;
+margin:0;
+border:none;
+cursor:pointer;
+align-self:flex-end;
 `
 
 export default function AddList() {
     const [items, setItems] = useState([]);
     const [title, setTitle] = useState("");
     const [pendingItem, setPendingItem] = useState("");
+    const [show, setShow] = useState(false)
 
     const addItem = (item) =>{
         setItems([...items, item]);
@@ -105,8 +136,21 @@ export default function AddList() {
         ]))
     }
 
-    return (
+    const toggleShow = () =>{
+        setShow(!show)
+    }
+
+    if(show){return (
         <Wrapper>
+            <HideButton 
+                type="button"
+                aria-label="Delete Item"
+                onClick= {toggleShow}
+            >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.24 0.929993L7.93627 6.23249L2.63377 0.929993L0.866272 2.69749L6.16877 7.99999L0.866272 13.3025L2.63377 15.07L7.93627 9.76749L13.24 15.07L15.0075 13.3025L9.70502 7.99999L15.0075 2.69749L13.24 0.929993Z" fill="#4F4F4F"/>
+                </svg>
+            </HideButton>
             <FormLabel htmlFor="title-input">Title</FormLabel>
             <TextInput 
                 id="title-input" 
@@ -140,5 +184,17 @@ export default function AddList() {
             >Save</SaveButton>
             
         </Wrapper>
-    )
+    )}
+    else{
+        return (
+            <ShowButtonWrapper>
+                <ShowButton 
+                    type="button"
+                    onClick={toggleShow}
+                >
+                    New List
+                </ShowButton>
+            </ShowButtonWrapper>
+        )
+    }
 }

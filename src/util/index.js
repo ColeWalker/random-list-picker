@@ -1,6 +1,6 @@
 export const pickRandomItemIndex = (arr) =>{
     const randIndex = (Math.floor(Math.random() * Math.floor(arr.length-1)));
-    return arr[randIndex];
+    return randIndex;
 }
 
 export const removeItemFromArr = (arr, index) =>{
