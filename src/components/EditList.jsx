@@ -98,7 +98,7 @@ cursor:pointer;
 align-self:flex-end;
 `
 
-export default function AddList({updateLists, lists}) {
+export default function AddList({list}) {
     const [items, setItems] = useState([]);
     const [title, setTitle] = useState("");
     const [pendingItem, setPendingItem] = useState("");
@@ -126,7 +126,14 @@ export default function AddList({updateLists, lists}) {
     }
 
     const handleSave = () =>{
-        updateLists([...lists, {title, items}])
+        const currentItems = JSON.parse(localStorage.getItem('lists')) || [];
+        window.localStorage.setItem("lists", JSON.stringify([
+        ...currentItems,
+        {
+            title,
+            items
+        }
+        ]))
     }
 
     const toggleShow = () =>{
