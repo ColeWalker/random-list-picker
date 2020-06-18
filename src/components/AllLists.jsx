@@ -3,8 +3,7 @@ import styled from "styled-components"
 import AllListItem from "./AllListItem"
 
 const Container = styled.div`
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 800px;
   margin-bottom: 75px;
 `
 
@@ -12,6 +11,8 @@ const Title = styled.h1`
   font-size: 39px;
   font-weight: 900;
   font-family: "Red Hat Display";
+  margin-bottom: 25px;
+  margin-top: 25px;
 `
 
 const Wrapper = styled.ul`
@@ -22,7 +23,12 @@ const Wrapper = styled.ul`
   flex-direction: column;
 `
 
-export default function AllLists({ lists, updateLists, pickRandom }) {
+export default function AllLists({
+  lists,
+  toggleShowRandom,
+  updateLists,
+  pickRandom,
+}) {
   return (
     <Container>
       <Title>Lists</Title>
@@ -35,6 +41,7 @@ export default function AllLists({ lists, updateLists, pickRandom }) {
               lists={lists}
               updateLists={updateLists}
               key={el.title + index}
+              toggleShowRandom={toggleShowRandom}
             />
           )
         })}

@@ -10,8 +10,8 @@ const Wrapper = styled.form`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  max-width: 700px;
-  margin: 15px auto;
+  max-width: 800px;
+  margin: 15px 0;
 
   ${props =>
     !props.show &&
@@ -57,6 +57,9 @@ const AddItemButton = styled.button`
   border: 2px solid #04a449;
   margin-left: 10px;
   cursor: pointer;
+  @media screen and (max-width: 800px) {
+    padding: 10px 15px;
+  }
 `
 
 const Button = styled.button`
@@ -72,6 +75,10 @@ const Button = styled.button`
 
   width: 25%;
   color: #ffffff;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    flex: 1;
+  }
 `
 
 const ButtonWrapper = styled.div`
@@ -133,12 +140,14 @@ export default function EditList({
     const newList = { title, items }
     let newLists = Object.assign([], lists, { [listIndex]: newList })
     updateLists(newLists)
+    toggleShow()
   }
 
   const handleDelete = () => {
     const listIndex = lists.findIndex(el => el.title === title)
     const newLists = removeItemFromArr(lists, listIndex)
     updateLists(newLists)
+    toggleShow()
   }
 
   return (

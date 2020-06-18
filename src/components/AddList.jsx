@@ -9,8 +9,7 @@ const Wrapper = styled.form`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  max-width: 700px;
-  margin: auto;
+  max-width: 800px;
 `
 
 const FormLabel = styled.label`
@@ -47,6 +46,9 @@ const AddItemButton = styled.button`
   color: #ffffff;
   border: 2px solid #04a449;
   margin-left: 10px;
+  @media screen and (max-width: 800px) {
+    padding: 10px 15px;
+  }
 `
 
 const SaveButton = styled.button`
@@ -61,15 +63,18 @@ const SaveButton = styled.button`
   font-size: 22px;
 
   align-self: flex-end;
-  width: 25%;
+  width: 30%;
   color: #ffffff;
+  @media screen and (max-width: 800px) {
+    width: 50%;
+  }
 `
 
 const ShowButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  max-width: 700px;
+  max-width: 800px;
   margin: auto;
 `
 
@@ -84,8 +89,12 @@ const ShowButton = styled.button`
   font-size: 22px;
   cursor: pointer;
   align-self: flex-end;
-  width: 25%;
+  width: 30%;
   color: #ffffff;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `
 
 const HideButton = styled.button`
@@ -126,9 +135,14 @@ export default function AddList({ updateLists, lists }) {
 
   const handleSave = () => {
     updateLists([...lists, { title, items }])
+    setItems([])
+    setTitle("")
+    toggleShow()
   }
 
   const toggleShow = () => {
+    setItems([])
+    setTitle([])
     setShow(!show)
   }
 
