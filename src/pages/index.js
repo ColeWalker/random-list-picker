@@ -54,7 +54,7 @@ export default function Home() {
   const [showRandomItem, setShowRandomItem] = useState(false)
 
   const [lists, setLists] = useState(
-    JSON.parse(window.localStorage.getItem("lists")) || []
+     []
   )
 
   const pickRandom = title => {
@@ -85,7 +85,9 @@ export default function Home() {
   const toggleShow = () => {
     setShowRandomItem(!showRandomItem)
   }
-
+  useEffect(()=>{
+    setLists(JSON.parse(window.localStorage.getItem("lists")) || [])
+  },[])
   useEffect(() => {
     window.localStorage.setItem("lists", JSON.stringify(lists))
   }, [lists])
